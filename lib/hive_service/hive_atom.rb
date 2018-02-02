@@ -1,3 +1,4 @@
+require 'date'
 require 'json'
 
 module HiveService
@@ -28,6 +29,14 @@ module HiveService
       end
 
       ensure_data_exists
+    end
+
+    def created_at_datetime
+      @created_at_datetime ||= DateTime.parse(@created_at)
+    end
+
+    def updated_at_datetime
+      @updated_at_datetime ||= DateTime.parse(@updated_at)
     end
 
     # We rarely want the data as JSON text in Ruby. So by default, we return the
