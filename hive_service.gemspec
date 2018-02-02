@@ -1,21 +1,22 @@
-
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "hive_service/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "hive_service"
+  spec.name          = "hive-service-ruby"
   spec.version       = HiveService::VERSION
   spec.authors       = ["Donald Merand"]
   spec.email         = ["dmerand@explo.org"]
 
   spec.summary       = %q{Use HIVE in your Ruby app.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.homepage      = "https://bitbucket.org/explo/hive-service-ruby"
 
-  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
-  # to allow pushing to a single host or delete this section to allow pushing to any host.
+  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the
+  # 'allowed_push_host' to allow pushing to a single host or delete this
+  # section to allow pushing to any host.
   if spec.respond_to?(:metadata)
-    spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
+    spec.metadata["allowed_push_host"] =
+      "https://bitbucket.org/explo/hive-service-ruby"
   else
     raise "RubyGems 2.0 or newer is required to protect against " \
       "public gem pushes."

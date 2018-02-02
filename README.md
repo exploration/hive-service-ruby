@@ -8,19 +8,13 @@ This library also defines a `HiveAtom` object.
 
 Add this line to your application's Gemfile:
 
-TODO: Replace this with the Bitbucket link
-
 ```ruby
-gem 'hive_service_ruby'
+gem 'hive_service_ruby', git: 'git@bitbucket.org:explo/hive-service-ruby.git'
 ```
 
 And then execute:
 
     $ bundle
-
-Or install it yourself as:
-
-    $ gem install hive_service_ruby
 
 ## Usage
 

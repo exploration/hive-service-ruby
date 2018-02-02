@@ -11,7 +11,7 @@ module HiveService
 
     def initialize(options = {})
       @hive_base_url = options.fetch :hive_base_url, 'https://hive.explo.org'
-      @hive_token = options.fetch :hive_token)
+      @hive_token = options.fetch :hive_token
       @application_name = options.fetch :application_name
     end
 
