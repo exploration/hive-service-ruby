@@ -2,8 +2,6 @@
 
 This is a library that we include in any Ruby (Rails, Sinatra, etc.) app where we want to have access to HIVE, either by posting atoms in, or searching for atoms.
 
-This library also defines a `HiveAtom` object.
-
 ## Installation
 
 Add this line to your application's Gemfile:
