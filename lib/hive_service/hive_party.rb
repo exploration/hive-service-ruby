@@ -24,7 +24,7 @@ module HiveService
         headers: {"Content-Type" => "x-www-form-urlencoded"},
         base_uri: @base_uri
       )
-      if response.success?
+      if response.success? && response.body
         json = JSON.parse(response.body)
         case json
         when Array

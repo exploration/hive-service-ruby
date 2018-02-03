@@ -58,7 +58,7 @@ module HiveService
     # @param atom [HiveService::HiveAtom] the atom we're deleting
     def delete(atom)
       form_data = { atom_id: atom.id }
-      @hive_party.post "/atoms/#{atom.id}/deletion", form_data
+      @hive_party.post "/atoms/#{atom.id}/deletions", form_data
     end
   end
 end
