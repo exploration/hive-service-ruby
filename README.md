@@ -39,7 +39,9 @@ Here's an example of how your might use the HIVE Service to search for some unse
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. Once your tests are passing, you'll also want to run `rake rubocop` or simply `rubocop` to run additional code tests.
+After checking out the repo, run `bin/setup` to install dependencies.
+
+On first installation, and after you've changed any code, run `rake test` to run the tests. Once your tests are passing, you'll also want to run `rake rubocop` or simply `rubocop` to run additional code tests. Alternatively, you can run `rake check_all` or simply `rake` to run the test suite, Rubocop, and Yard documentation in one pass.
 
 You can run `bin/console` for an interactive prompt that will allow you to experiment.
 
