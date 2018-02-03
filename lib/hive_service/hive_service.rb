@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 module HiveService
+  # A handy service you can use to push or pull atoms from HIVE!
   class HiveService
     attr_accessor :application_name, :hive_base_uri
 
@@ -34,14 +37,14 @@ module HiveService
     #       "unseen_by_this_app")
     #     -> [HiveAtom<>, HiveAtom<>, etc...]
     def get_unseen_atoms(opts = {})
-      @hive_party.post("/atom_search", opts) unless opts[:application].nil?
+      @hive_party.post('/atom_search', opts) unless opts[:application].nil?
     end
 
     # POST a new atom to HIVE
     #
     # @param atom [HiveService::HiveAtom] the atom to post
     def post(atom)
-      @hive_party.post "/atoms", atom.to_h
+      @hive_party.post '/atoms', atom.to_h
     end
 
     # Mark a particular atom as being received by the application associated
