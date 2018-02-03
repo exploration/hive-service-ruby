@@ -8,11 +8,12 @@ module HiveService
     # @option opts [String] :application_name (Required) Name of application
     #   that's making HIVE requests
     # @option opts [String] :hive_token (Required) Authentication token for
-    #   HIVE.
+    #   HIVE. Checks ENV for HIVE_API_TOKEN as well.
     # @option opts [String] :hive_base_uri Which HIVE server to point to.
+    #   Defaults to 'https://hive.explo.org'.
     def initialize(opts = {})
       @application_name = opts.fetch :application_name
-      @hive_token = ENV['HIVE_API_TOKEN'] || opts.fetch(:hive_token)
+      @hive_token = opts.fetch(:hive_token, ENV['HIVE_API_TOKEN'])
 
       @hive_base_uri = opts.fetch :hive_base_uri, 'https://hive.explo.org'
       @hive_party = HiveParty.new(

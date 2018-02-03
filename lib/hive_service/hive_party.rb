@@ -3,7 +3,7 @@
 require 'httparty'
 
 module HiveService
-  # Utility class that we use to send requests to the HIVE server
+  # Utility class that we use to send API requests to the HIVE server
   class HiveParty
     include HTTParty
 
@@ -13,7 +13,7 @@ module HiveService
     end
 
     # POST a request to HIVE.
-    # @param endpoint [String] Which endpoing of the HIVE api do you want to
+    # @param endpoint [String] Which endpoint of the HIVE API do you want to
     #   hit?
     # @param form_data [Hash] The form data you wish to POST.
     #

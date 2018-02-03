@@ -13,9 +13,12 @@ module HiveService
 
     FIELDS.each { |f| attr_accessor f }
 
-    # We always initialize a HIVE atom from a JSON string (because we're using
-    # this class mostly to parse incoming atoms rather than to send outgoing
-    # ones)
+    # A HIVE Atom can be initialized from a Ruby Hash (with string or symbol
+    # keys), or from a JSON object with the same shape as a HIVE atom. The
+    # default is to expect a Hash.
+    #
+    # @param atom_data [Hash] The atom details. Alternatively you can pass a
+    #   JSON String.
     def initialize(atom_data = {})
       if atom_data.is_a? Hash
         initialize_atom_hash(atom_data)
@@ -28,28 +31,38 @@ module HiveService
       ensure_data_exists
     end
 
+    # Returns creation date as a Ruby `DateTime` object.
+    #
+    # @return [DateTime]
     def created_at_datetime
       @created_at_datetime ||= DateTime.parse(@created_at)
     end
 
+    # Returns updated date as a Ruby `DateTime` object.
+    #
+    # @return [DateTime]
     def updated_at_datetime
       @updated_at_datetime ||= DateTime.parse(@updated_at)
     end
 
-    # We rarely want the data as JSON text in Ruby. So by default, we return the
-    # parsed hash of the data instead.
+    # Get atom data as a Ruby `Hash`
+    #
+    # @return [Hash] The `data` field of the atom.
     def data_hash
       @data_hash ||= JSON.parse(@data)
     end
 
+    # @return [Hash] Hash representation of the atom.
     def to_h
       FIELDS.map { |f| [f, instance_eval("@#{f}", __FILE__, __LINE__)] }.to_h
     end
 
+    # @return [String] JSON String representation of the atom
     def to_json
       to_h.to_json
     end
 
+    # @return [String] JSON String representation of the atom
     def to_s
       to_json
     end
