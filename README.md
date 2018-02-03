@@ -41,14 +41,14 @@ Here's an example of how your might use the HIVE Service to search for some unse
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. Once your tests are passing, you'll also want to run `rake rubocop` or simply `rubocop` to run additional code tests.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+You can run `bin/console` for an interactive prompt that will allow you to experiment.
+
+To install this gem onto your local machine, run `bundle exec rake install`.
 
 ## Documentation
 
-This source code is compatible with [YARD](https://yardoc.org/) for documentation. To generate the docs, type:
-
-    yardoc
+This source code is compatible with [YARD](https://yardoc.org/) for documentation. To generate the docs, simply type `yardoc`.
 
 To view the generated documentation, you can open the `index.html` file in the `docs` directory.
