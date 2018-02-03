@@ -1,4 +1,4 @@
-# HiveService (Ruby Version)
+# HIVE Service (Ruby Version)
 
 This is a library that we include in any Ruby (Rails, Sinatra, etc.) app where we want to have access to HIVE, either by posting atoms in, or searching for atoms.
 
@@ -18,7 +18,26 @@ And then execute:
 
 ## Usage
 
-TODO: Write usage instructions here
+In your app, you must of course:
+
+    require 'hive_service'
+
+Here's an example of how your might use the HIVE Service to search for some unseen atoms from the Portal:
+
+    hs = HiveService::HiveService.new(
+      application_name: 'hive_service_ruby_test',
+      hive_base_uri: 'https://my_hive_server.com',
+      hive_token: ENV['HIVE_API_TOKEN']
+    )
+
+    atoms = hs.get_unseen_atoms(
+      application: 'portal_production',
+      context: 'course',
+      receipts: 'my_kewl_app'
+    )
+
+    # `atoms` will be a list of HiveAtom objects
+    puts atoms.count
 
 ## Development
 
