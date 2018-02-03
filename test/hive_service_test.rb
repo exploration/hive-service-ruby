@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 
 class HiveServiceTest < Minitest::Test
   SETUP = begin
@@ -17,7 +17,7 @@ class HiveServiceTest < Minitest::Test
     assert_kind_of HiveService::HiveAtom, a
     assert_equal atom.application, a.application
 
-    delete_result = hive_service.delete a 
+    delete_result = hive_service.delete a
     assert_equal [], delete_result
   end
 
@@ -26,28 +26,29 @@ class HiveServiceTest < Minitest::Test
     updated_a = hive_service.post_receipt a
     assert_equal hive_service.application_name, updated_a.receipts
 
-    remove_test_atoms_from_hive()
+    remove_test_atoms_from_hive
   end
 
   def test_get_unseen_atoms
     a = hive_service.post atom
-    b = hive_service.post atom(process: 'test_process_2')
     c = atom(process: 'test_process_3')
 
     search = hive_service.get_unseen_atoms(
-      application: atom.application,
-      receipts: hive_service.application_name
+      application: atom.application, receipts: hive_service.application_name
     )
 
-    assert_equal 2, search.count
-    assert search.find {|el| el.process == a.process}
-    assert search.find {|el| el.process == b.process}
-    refute search.find {|el| el.process == c.process}
+    assert_equal 1, search.count
+    assert compare_search_results search, a
+    refute compare_search_results search, c
 
-    remove_test_atoms_from_hive()
+    remove_test_atoms_from_hive
   end
 
   private
+
+  def compare_search_results(search_results, hive_atom)
+    search_results.any? { |el| el.process == hive_atom.process }
+  end
 
   def hive_service
     HiveService::HiveService.new(
@@ -62,6 +63,6 @@ class HiveServiceTest < Minitest::Test
       application: atom.application,
       receipts: 'anything'
     )
-    atoms.each {|a| hive_service.delete a} unless atoms.nil?
+    atoms.each { |a| hive_service.delete a } unless atoms.nil?
   end
 end
