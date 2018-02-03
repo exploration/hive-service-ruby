@@ -85,24 +85,4 @@ class HiveServiceTest < Minitest::Test
   def test_to_s_returns_json
     assert_equal atom.to_s, atom.to_json
   end
-
-  private
-
-  def atom(options = {})
-    HiveService::HiveAtom.new(atom_hash.merge(options))
-  end
-
-  def atom_hash
-    {
-      application: 'test_app',
-      context: 'test_context',
-      process: 'test_process',
-      data: %({"hello":"world"}),
-      id: 1
-    }
-  end
-  
-  def atom_json
-    atom_hash.to_json
-  end
 end

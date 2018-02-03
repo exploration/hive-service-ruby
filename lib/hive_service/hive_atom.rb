@@ -1,5 +1,4 @@
 require 'date'
-require 'json'
 
 module HiveService
   class HiveAtom
