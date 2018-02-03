@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'hive_service/hive_atom'
 require 'hive_service/hive_party'
 require 'hive_service/hive_service'

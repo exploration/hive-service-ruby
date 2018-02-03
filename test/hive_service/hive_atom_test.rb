@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'test_helper'
 
 class HiveServiceTest < Minitest::Test
@@ -30,7 +31,7 @@ class HiveServiceTest < Minitest::Test
 
   def test_receipts_initialization
     receipts = 'test_receipt'
-    assert_equal atom(receipts: receipts).receipts, receipts 
+    assert_equal atom(receipts: receipts).receipts, receipts
   end
 
   def test_timestamps_initialization
@@ -41,6 +42,7 @@ class HiveServiceTest < Minitest::Test
     assert_equal updated_at, a.updated_at
   end
 
+  # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
   def test_timestamp_parsing
     created_at = '2017-01-18T23:29:22.927451'
     updated_at = '2017-11-18T11:29:14.501361'
@@ -56,14 +58,15 @@ class HiveServiceTest < Minitest::Test
     assert_equal 11, uad.month
     assert_equal 11, uad.hour
   end
+  # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 
   def test_getting_the_triplet
-    expected_triplet = ['test_app', 'test_context', 'test_process']
+    expected_triplet = %w[test_app test_context test_process]
     assert_equal expected_triplet, atom.triplet
   end
 
   def test_getting_data_as_a_hash
-    expected_hash = {'hello' => 'world'}
+    expected_hash = { 'hello' => 'world' }
     assert_equal expected_hash, atom.data_hash
   end
 
@@ -74,12 +77,20 @@ class HiveServiceTest < Minitest::Test
   end
 
   def test_converts_to_hash
-    expected_hash = {"id"=>1, "application"=>"test_app", "context"=>"test_context", "process"=>"test_process", "data"=>"{\"hello\":\"world\"}", "receipts"=>nil, "created_at"=>nil, "updated_at"=>nil}
+    expected_hash = {
+      'id' => 1, 'application' => 'test_app',
+      'context' => 'test_context', 'process' => 'test_process',
+      'data' => '{"hello":"world"}', 'receipts' => nil,
+      'created_at' => nil, 'updated_at' => nil
+    }
     assert_equal expected_hash, atom.to_h
   end
 
   def test_converts_to_json
-    expected_json = "{\"id\":1,\"application\":\"test_app\",\"context\":\"test_context\",\"process\":\"test_process\",\"data\":\"{\\\"hello\\\":\\\"world\\\"}\",\"receipts\":null,\"created_at\":null,\"updated_at\":null}"
+    expected_json = '{"id":1,"application":"test_app","context":' \
+                    '"test_context","process":"test_process","data":' \
+                    '"{\"hello\":\"world\"}","receipts":null,"created_at"' \
+                    ':null,"updated_at":null}'
     assert_equal expected_json, atom.to_json
   end
 

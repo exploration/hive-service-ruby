@@ -1,27 +1,25 @@
+# frozen_string_literal: true
+
 require 'date'
 
 module HiveService
+  # A representation of a single atom from the HIVE system. Contains useful
+  # methods for accessing atom data such as the "triplet", the data in Ruby
+  # Hash format, etc.
   class HiveAtom
-    FIELDS = [
-      'id',
-      'application',
-      'context',
-      'process',
-      'data',
-      'receipts',
-      'created_at',
-      'updated_at'
-    ]
+    FIELDS = %w[
+      id application context process data receipts created_at updated_at
+    ].freeze
 
-    FIELDS.each {|f| attr_accessor f}
+    FIELDS.each { |f| attr_accessor f }
 
     # We always initialize a HIVE atom from a JSON string (because we're using
     # this class mostly to parse incoming atoms rather than to send outgoing
     # ones)
     def initialize(atom_data = {})
-      if atom_data.kind_of? Hash
+      if atom_data.is_a? Hash
         initialize_atom_hash(atom_data)
-      elsif atom_data.kind_of? String
+      elsif atom_data.is_a? String
         initialize_atom_json(atom_data)
       else
         raise ArgumentError
@@ -45,7 +43,7 @@ module HiveService
     end
 
     def to_h
-      FIELDS.map {|f| [f, instance_eval("@#{f}")] }.to_h
+      FIELDS.map { |f| [f, instance_eval("@#{f}", __FILE__, __LINE__)] }.to_h
     end
 
     def to_json
@@ -66,7 +64,7 @@ module HiveService
     private
 
     def ensure_data_exists
-      @data ||= "{}"
+      @data ||= '{}'
     end
 
     def initialize_atom_hash(atom_hash)
@@ -75,11 +73,11 @@ module HiveService
       first_key = atom_hash.keys.first
       FIELDS.each do |f|
         if first_key.is_a? Symbol
-          instance_eval "@#{f} = atom_hash[:#{f}]"
+          instance_eval "@#{f} = atom_hash[:#{f}]", __FILE__, __LINE__
         elsif first_key.is_a? String
-          instance_eval "@#{f} = atom_hash['#{f}']"
+          instance_eval "@#{f} = atom_hash['#{f}']", __FILE__, __LINE__
         end
-      end      
+      end
     end
 
     def initialize_atom_json(atom_json)

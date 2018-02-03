@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'test_helper'
 
 class HiveServiceTest < Minitest::Test
@@ -30,6 +31,7 @@ class HiveServiceTest < Minitest::Test
     remove_test_atoms_from_hive
   end
 
+  # rubocop:disable Metrics/AbcSize
   def test_get_unseen_atoms
     a = hive_service.post atom
     c = atom(process: 'test_process_3')
@@ -44,6 +46,7 @@ class HiveServiceTest < Minitest::Test
 
     remove_test_atoms_from_hive
   end
+  # rubocop:enable Metrics/AbcSize
 
   private
 
@@ -64,6 +67,6 @@ class HiveServiceTest < Minitest::Test
       application: atom.application,
       receipts: 'anything'
     )
-    atoms.each { |a| hive_service.delete a } unless atoms.nil?
+    atoms&.each { |a| hive_service.delete a }
   end
 end
