@@ -20,14 +20,14 @@ module HiveService
     # @param atom_data [Hash] The atom details. Alternatively you can pass a
     #   JSON String.
     def initialize(atom_data = {})
-      if atom_data.is_a? Hash
+      case atom_data
+      when Hash
         initialize_atom_hash(atom_data)
-      elsif atom_data.is_a? String
+      when String
         initialize_atom_json(atom_data)
       else
         raise ArgumentError
       end
-
       ensure_data_exists
     end
 
