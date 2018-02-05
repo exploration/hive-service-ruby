@@ -7,7 +7,7 @@ This is a library that we include in any Ruby (Rails, Sinatra, etc.) app where w
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'hive_service_ruby', git: 'git@bitbucket.org:explo/hive-service-ruby.git'
+gem 'hive_service', git: 'git@bitbucket.org:explo/hive-service-ruby.git'
 ```
 
 And then execute:
