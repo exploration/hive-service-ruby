@@ -98,17 +98,18 @@ class HiveServiceTest < Minitest::Test
     assert_equal test_atom.to_s, test_atom.to_json
   end
 
-  # Property tests (random value tests) follow:
-  
   def test_atom_parsing_random_values
-    property_of {
+    state = property_of do
       hash = random_atom_hash
       HiveService::HiveAtom.new hash
-    }.check(100) { |atom|
-      assert_kind_of HiveService::HiveAtom, atom,
-        'HiveAtom parse didn\'t return a valid HIVE Atom.'
+    end
+
+    state.check(100) do |atom|
+      assert_kind_of HiveService::HiveAtom,
+                     atom,
+                     'HiveAtom parse didn\'t return a valid HIVE Atom.'
 
       assert_kind_of Hash, atom.data_hash
-    }
+    end
   end
 end

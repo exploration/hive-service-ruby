@@ -4,6 +4,7 @@ lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'hive_service/version'
 
+# rubocop:disable Metrics/BlockLength
 Gem::Specification.new do |spec|
   spec.name = 'hive_service'
   spec.version = HiveService::VERSION
@@ -40,3 +41,4 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency 'httparty', '~>0.13.3'
 end
+# rubocop:enable Metrics/BlockLength

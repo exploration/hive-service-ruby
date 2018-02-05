@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-$VERBOSE=nil
+$VERBOSE = nil
 require 'hive_service'
 require 'minitest/autorun'
 require 'rantly'
@@ -29,13 +29,14 @@ end
 # between 1 and 100 keys in length, with either string => integer or float =>
 # boolean keys.
 def random_data_json
-  Rantly { 
-    dict(range(1,100)) {
-      array(2) {
-          freq [5, :string], [1, :integer], [1, :float], [1, :boolean] 
-      }
-    } 
-  }.to_json
+  hash = Rantly do
+    dict(range(1, 100)) do
+      array(2) do
+        freq [5, :string], [1, :integer], [1, :float], [1, :boolean]
+      end
+    end
+  end
+  hash.to_json
 end
 
 # Creates a hash with an atom shape, and entirely random values.
