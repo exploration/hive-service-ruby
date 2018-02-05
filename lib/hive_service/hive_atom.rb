@@ -49,7 +49,14 @@ module HiveService
     #
     # @return [Hash] The `data` field of the atom.
     def data_hash
-      @data_hash ||= JSON.parse(@data)
+      case @data
+      when String
+        @data_hash ||= JSON.parse(@data)
+      when Hash
+        @data_hash ||= @data
+      else
+        @data_hash ||= {}
+      end
     end
 
     # @return [Hash] Hash representation of the atom.
