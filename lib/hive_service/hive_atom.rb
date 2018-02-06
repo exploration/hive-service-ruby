@@ -7,10 +7,15 @@ module HiveService
   # methods for accessing atom data such as the "triplet", the data in Ruby
   # Hash format, etc.
   class HiveAtom
+    # These are the "core" fields that constitute a HIVE atom. An atom from the
+    # HIVE system will have all of these, but an atom that goes INTO the HIVE
+    # system need only have application, context, process (the "triplet"), and
+    # data.
     FIELDS = %w[
       id application context process data receipts created_at updated_at
     ].freeze
 
+    # Create accessors for all fields.
     FIELDS.each { |f| attr_accessor f }
 
     # A HIVE Atom can be initialized from a Ruby Hash (with string or symbol

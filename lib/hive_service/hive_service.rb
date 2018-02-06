@@ -22,8 +22,10 @@ module HiveService
       )
     end
 
-    # Return an array of HiveAtoms, that match a given application, context,
-    # and process.
+    # Search HIVE for atoms that match a given application name, and optionally
+    # context and/or process names. You typically pass a `receipts` option that
+    # identifies the name of the app doing the searching. By default, you will
+    # not see atoms that the app has marked as "received".
     #
     # @option opts [String] :application (Required) Name of application to
     #   match
