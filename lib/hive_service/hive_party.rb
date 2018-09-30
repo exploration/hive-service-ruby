@@ -22,7 +22,7 @@ module HiveService
       form_data = form_data.merge(token: @hive_token)
       response = self.class.post(
         endpoint,
-        query: form_data,
+        body: form_data,
         headers: { 'Content-Type' => 'x-www-form-urlencoded' },
         base_uri: @base_uri
       )
