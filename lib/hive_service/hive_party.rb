@@ -22,8 +22,8 @@ module HiveService
       form_data = form_data.merge(token: @hive_token)
       response = self.class.post(
         endpoint,
-        body: form_data,
-        headers: { 'Content-Type' => 'x-www-form-urlencoded' },
+        body: form_data.to_json,
+        headers: { 'Content-Type' => 'application/json' },
         base_uri: @base_uri
       )
 
@@ -41,7 +41,7 @@ module HiveService
           HiveAtom.new(json)
         end
       else
-        []
+        response.parsed_response['data']
       end
     end
   end
