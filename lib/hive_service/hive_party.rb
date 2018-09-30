@@ -41,7 +41,7 @@ module HiveService
           HiveAtom.new(json)
         end
       else
-        response.parsed_response['data']
+        []
       end
     end
   end
