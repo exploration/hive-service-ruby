@@ -12,6 +12,17 @@ module HiveService
       @hive_token = ENV['HIVE_API_TOKEN'] || opts.fetch(:hive_token)
     end
 
+    # GET a request from HIVE
+    # @param endpoint [String] Which endpoint of the HIVE API do you want to
+    #   hit?
+    #
+    # @return Atom A HIVE Atom
+    def get(endpoint, query: {token: @hive_token})
+      response = self.class.get("#{@base_uri}/#{endpoint}", query: query)
+      parse_response response
+    end
+
+
     # POST a request to HIVE.
     # @param endpoint [String] Which endpoint of the HIVE API do you want to
     #   hit?

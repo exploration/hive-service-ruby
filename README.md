@@ -52,3 +52,6 @@ To install this gem onto your local machine, run `bundle exec rake install`.
 This source code is compatible with [YARD](https://yardoc.org/) for documentation. To generate the docs, simply type `yardoc`.
 
 To view the generated documentation, you can open the `index.html` file in the `docs` directory.
+
+## Changelog
+- 0.1.6 - Added `service.get_atom(id)`

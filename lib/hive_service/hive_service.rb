@@ -22,6 +22,15 @@ module HiveService
       )
     end
 
+    # Get a single atom from HIVE, by ID
+    # Example:
+    #
+    #     service.get_atom(7612)
+    #     -> HiveAtom<>
+    def get_atom(id)
+      @hive_party.get("/atoms/#{id}") 
+    end
+
     # Search HIVE for atoms that match a given application name, and optionally
     # context and/or process names. You typically pass a `receipts` option that
     # identifies the name of the app doing the searching. By default, you will

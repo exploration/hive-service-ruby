@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    hive_service (0.1.4)
+    hive_service (0.1.6)
       httparty (~> 0.18.1)
 
 GEM
