@@ -20,7 +20,7 @@ GEM
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
-    rake (10.5.0)
+    rake (13.0.3)
     rantly (1.1.0)
     yard (0.9.25)
 
@@ -32,7 +32,7 @@ DEPENDENCIES
   hive_service!
   minitest (~> 5.0)
   pry (~> 0.11)
-  rake (~> 10.0)
+  rake (>= 12.3.3)
   rantly (~> 1.1.0)
   yard (~> 0.9.12)
 
